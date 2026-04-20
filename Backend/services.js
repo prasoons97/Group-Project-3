@@ -1,34 +1,23 @@
 import express from "express";
 import { db } from "./firebase.js";
-import { collection, addDoc, Timestamp, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, Timestamp, doc, deleteDoc } from "firebase/firestore";
 
 const router = express.Router();
-router.get('/products', async (req, res) => {
-    try {
-        const products = [
-            {
-                id: 1,
-                name: "T-shirt",
-                price: 199,
-                category: "Clothes"
-            },
-            {
-                id: 2,
-                name: "Jeans",
-                price: 499,
-                category: "Clothes"
-            },
-            {
-                id: 3,
-                name: "Sneakers",
-                price: 999,
-                category: "Footwear"
-            }
-        ];
-        res.status(200).json(products);
-    } catch (error) {
-        res.status(500).send('Failed to fetch products');
-    }
+
+router.get("/products", async (req, res) => {
+  try {
+    const snapshot = await getDocs(collection(db, "products"));
+
+   const products = snapshot.docs.map((doc) => ({
+  firestoreId: doc.id,
+  ...doc.data(),
+}));
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch products" });
+  }
 });
 
 router.post("/api/orders", async (req, res) => {
