@@ -1,6 +1,6 @@
 import express from "express";
 import { db } from "./firebase.js";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { collection, addDoc, Timestamp, doc, deleteDoc } from "firebase/firestore";
 
 const router = express.Router();
 router.get('/products', async (req, res) => {
@@ -52,6 +52,19 @@ router.post("/api/orders", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Failed to save order" });
   }
+});
+
+router.delete("/api/orders/:id", async (req, res) => {
+    const id = req.params.id.trim();
+
+    try {
+        const docRef = doc(db, "orders", id);
+        await deleteDoc(docRef);
+        res.status(200).json({ message: "Order deleted successfully"});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to delete order"});
+    }
 });
 
 export default router;
