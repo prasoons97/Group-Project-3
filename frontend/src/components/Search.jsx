@@ -8,7 +8,7 @@ function Search({ products, setFilteredProducts }) {
         setSearch(value);
 
         const filtered = products.filter((product) =>
-            product.name.toLowerCase().includes(value.toLowerCase())
+            product.name.toLowerCase().includes(value.toLowerCase().trim())
         );
 
         setFilteredProducts(filtered);
