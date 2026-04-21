@@ -18,9 +18,6 @@ function Products() {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h1>Products</h1>
-      <Search products={products} setFilteredProducts={setFilteredProducts} />
-
       {/* Loopar igenom alla produkter */}
       {filteredProducts.map((product) => (
         <div
