@@ -4,6 +4,7 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import Products from "./Products";
 import CartBtn from './components/CartBtn';
+import Banner from './components/Banner';
 
 
 
@@ -19,7 +20,9 @@ function App() {
           console.log("Go to cart");
         }}
       />
+      
       <Products />
+      <Banner></Banner>
     </div>
   );
 }
