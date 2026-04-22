@@ -1,15 +1,25 @@
-import { useState } from "react";
-import Products from "./Products";
+import { useEffect, useState } from "react";
+import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 
 function App() {
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setFilteredProducts(data);
+      });
+  }, []);
 
   return (
     <div>
       <Navbar
-        products={[]}
+        products={products}
         setFilteredProducts={setFilteredProducts}
         cartCount={cart.length}
         onCartClick={() => console.log("Go to cart")}
