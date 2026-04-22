@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
+import ProductPage from "./components/ProductPage";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div>
+      <ProductPage product={filteredProducts[0]} />
       <Navbar
         products={products}
         setFilteredProducts={setFilteredProducts}
