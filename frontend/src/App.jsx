@@ -1,20 +1,38 @@
-import { useState } from 'react'
+import { useEffect, useState } from "react";
 import Products from "./components/Products";
-import CartBtn from './components/CartBtn';
+import Navbar from "./components/Navbar";
 
 function App() {
-
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setFilteredProducts(data);
+      });
+  }, []);
+
   return (
     <div>
-       <CartBtn
-        count={cart.length}
-        onClick={() => {
-          console.log("Go to cart");
-        }}
+      <Navbar
+        products={products}
+        setFilteredProducts={setFilteredProducts}
+        cartCount={cart.length}
+        onCartClick={() => console.log("Go to cart")}
       />
-      <Products />
+
+      <main
+        style={{
+          padding: "2rem",
+          marginTop: "1rem",
+        }}
+      >
+        <Products products={filteredProducts} cart={cart} setCart={setCart} />
+      </main>
     </div>
   );
 }
