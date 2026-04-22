@@ -1,3 +1,5 @@
+import CartBtn from './components/CartBtn';
+import Banner from './components/Banner';
 import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
@@ -24,7 +26,9 @@ function App() {
         cartCount={cart.length}
         onCartClick={() => console.log("Go to cart")}
       />
-
+    
+<Banner></Banner>
+<Products />
       <main
         style={{
           padding: "2rem",
