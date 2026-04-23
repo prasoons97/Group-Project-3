@@ -2,6 +2,17 @@ import Search from "./Search";
 import CartBtn from "./CartBtn";
 
 function Navbar({ products, setFilteredProducts, onCartClick, cartCount }) {
+  const handleFilter = (category) => {
+    if (category === "ALLA") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(
+        (product) => product.category?.toLowerCase() === category.toLowerCase(),
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+
   return (
     <nav
       style={{
@@ -23,10 +34,10 @@ function Navbar({ products, setFilteredProducts, onCartClick, cartCount }) {
           cursor: "pointer",
         }}
       >
-        <span>ALLA</span>
-        <span>HERR</span>
-        <span>DAM</span>
-        <span>BARN</span>
+        <span onClick={() => handleFilter("ALLA")}>ALLA</span>
+        <span onClick={() => handleFilter("HERR")}>HERR</span>
+        <span onClick={() => handleFilter("DAM")}>DAM</span>
+        <span onClick={() => handleFilter("BARN")}>BARN</span>
       </div>
 
       <div
