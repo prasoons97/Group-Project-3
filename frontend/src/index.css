@@ -66,6 +66,28 @@ body {
   font-size: 1.2rem;
   color: var(--text-h);
 }
+
+.mobile-only { display: none; }
+.desktop-only { display: flex; gap: 1.5rem; }
+
+@media (max-width: 768px) {
+  .mobile-only { display: flex; }
+  .desktop-only { display: none; }
+}
+
+.nav-category {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 36px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.nav-category:hover {
+  text-decoration: underline;
+}
+
 .navbar {
   display: flex;
   align-items: center;
@@ -81,8 +103,12 @@ body {
 .navbar-logo {
   flex: 1;
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
 }
 
 .navbar-left {
@@ -149,4 +175,13 @@ body {
 
 .menu-item:hover {
   background: #f9f9f9;
+}
+.cart-wrapper {
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.cart-active {
+  background: #474645;  
+  color: #fff;
 }
