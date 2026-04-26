@@ -1,6 +1,6 @@
 import Search from "./Search";
 import CartBtn from "./CartBtn";
-
+import HamburgerMenu from "./HamburgerMenu";
 function Navbar({ products, setFilteredProducts, onCartClick, cartCount }) {
   const handleFilter = (category) => {
     if (category === "ALLA") {
@@ -14,58 +14,16 @@ function Navbar({ products, setFilteredProducts, onCartClick, cartCount }) {
   };
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "1rem 2rem",
-        borderBottom: "1px solid #ddd",
-      }}
-    >
-      <div
-        style={{
-          flex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          gap: "1.5rem",
-          fontWeight: "bold",
-          cursor: "pointer",
-        }}
-      >
-        <span onClick={() => handleFilter("ALLA")}>ALLA</span>
-        <span onClick={() => handleFilter("HERR")}>HERR</span>
-        <span onClick={() => handleFilter("DAM")}>DAM</span>
-        <span onClick={() => handleFilter("BARN")}>BARN</span>
+    <nav className="navbar">
+      <div className="navbar-left">
+        <HamburgerMenu onFilter={handleFilter} />
       </div>
-
-      <div
-        style={{
-          flex: 1,
-          textAlign: "center",
-          fontSize: "1.5rem",
-          fontWeight: "bold",
-        }}
-      >
-        W O R N
-      </div>
-
-      <div
-        style={{
-          flex: 1,
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          gap: "1rem",
-        }}
-      >
+      <div className="navbar-logo">W O R N</div>
+      <div className="navbar-right">
         <Search products={products} setFilteredProducts={setFilteredProducts} />
-
         <CartBtn onClick={onCartClick} count={cartCount} />
       </div>
     </nav>
   );
 }
-
 export default Navbar;
