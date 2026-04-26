@@ -21,7 +21,6 @@ function App() {
 
   return (
     <div>
-      <ProductPage product={filteredProducts[0]} />
       <Navbar
         products={products}
         setFilteredProducts={setFilteredProducts}
@@ -38,6 +37,7 @@ function App() {
         }}
       >
         <Products products={filteredProducts} cart={cart} setCart={setCart} />
+        <ProductPage product={filteredProducts[0]} />
       </main>
     </div>
   );
