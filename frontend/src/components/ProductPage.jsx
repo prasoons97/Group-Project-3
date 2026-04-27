@@ -1,18 +1,25 @@
-function ProductPage ({ product }) {
-    if (!product) return <p>No product selected</p>
-    return (
-        <section className="product-page">
+import { useParams } from "react-router-dom";
 
-            <img src={product.image} alt={product.name} />
+function ProductPage({ products = [] }) {
+  const { id } = useParams();
 
-            <h1>{product.name}</h1>
+  const product = products.find(
+    (product) => product.firestoreId === id
+  );
 
-            <p>{product.description}</p>
+  if (!product) return <p>Product not found</p>;
 
-            <p>{product.price} kr</p>
+  return (
+    <section className="product-page">
+      <img src={product.image} alt={product.name} />
 
-        </section>
-    )
+      <h1>{product.name}</h1>
+
+      <p>{product.description}</p>
+
+      <p>{product.price} kr</p>
+    </section>
+  );
 }
 
 export default ProductPage;
