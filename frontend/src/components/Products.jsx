@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
 
 function Products({ products = [] }) {
@@ -5,7 +6,13 @@ function Products({ products = [] }) {
     <section className="products-page">
       <div className="products-grid">
         {products.map((product) => (
-          <ProductCard key={product.firestoreId} product={product} />
+          <Link
+            key={product.firestoreId}
+            to={`/products/${product.firestoreId}`}
+            className="product-card-link"
+            >
+              <ProductCard product={product} />
+              </Link>
         ))}
       </div>
     </section>
