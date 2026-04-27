@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
+import "./App.css";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -27,9 +28,9 @@ function App() {
         cartCount={cart.length}
         onCartClick={() => console.log("Go to cart")}
       />
-    
-<Banner></Banner>
-<Products />
+
+      <Banner></Banner>
+      <Products />
       <main
         style={{
           padding: "2rem",
