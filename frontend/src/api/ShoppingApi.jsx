@@ -60,6 +60,35 @@ export const useCreateOrderMutation = () => {
 
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["orders"] });
-    },
+        },
+  });
+};
+
+export const useDeleteOrderMutation = () =>{
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteOrder,
+
+    onMutate: async (id) => {
+      await queryClient.cancelQueries({ queryKey: ["orders"] });
+
+      const previousOrders = queryClient.getQueryData(["orders"]);
+
+      queryClient.setQueryData(["orders"], (old) =>
+      (old || []).filter((order) => order.id !== id)
+    );
+    
+    return { previousOrders };
+  },
+
+  onError: (_err, _id, context) => {
+    queryClient.setQueryData(["orders"], context?.previousOrders);
+  },
+
+  onSettled: () => {
+    queryClient.invalidateQueries({ queryKey: ["orders"] });
+  },
+
   });
 };
