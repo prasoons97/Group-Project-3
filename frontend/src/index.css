@@ -66,3 +66,122 @@ body {
   font-size: 1.2rem;
   color: var(--text-h);
 }
+
+.mobile-only { display: none; }
+.desktop-only { display: flex; gap: 1.5rem; }
+
+@media (max-width: 768px) {
+  .mobile-only { display: flex; }
+  .desktop-only { display: none; }
+}
+
+.nav-category {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 36px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.nav-category:hover {
+  text-decoration: underline;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 200;
+}
+
+.navbar-logo {
+  flex: 1;
+  text-align: center;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.navbar-left {
+  flex: 1;
+}
+
+.navbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.hamburger-overlay {
+  position: fixed;
+  inset: 0;
+  top: 64px;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 99;
+}
+
+.hamburger-drawer {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 64px);
+  background: #fff;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 1rem;
+  z-index: 100;
+  
+}
+
+.menu-item {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid #f0f0f0;
+}
+.drawer-footer {
+  padding: 1rem 1.5rem;
+  color: #aaa;
+  font-size: 0.75rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.drawer-footer p {
+  margin: 0.2rem 0;
+}
+
+.menu-item:hover {
+  background: #f9f9f9;
+}
+.cart-wrapper {
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.cart-active {
+  background: #474645;  
+  color: #fff;
+}
