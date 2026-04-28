@@ -4,7 +4,7 @@ import banner2 from "../assets/banner2.webp";
 import banner3 from "../assets/banner3.webp";
 import Btn from "./Btn";
 
-function Banner() {
+function Banner({ onShopNow }) {
     const images = [banner1, banner2, banner3];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,7 +38,10 @@ function Banner() {
         borderRadius: 5,
         cursor: "pointer"
     }}
-    onClick={() => console.log("Shop now clicked")}
+    onClick={() => {
+        console.log("Shop now clicked");
+        onShopNow();
+    }}
 >
     Shop now
 </Btn>
