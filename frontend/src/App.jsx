@@ -1,10 +1,12 @@
-import CartBtn from './components/CartBtn';
-import Banner from './components/Banner';
+import CartBtn from "./components/CartBtn";
+import Banner from "./components/Banner";
 import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
-import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
+import ShoppingCart from "./components/ShoppingCart";
+import "/.App.css;"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -36,34 +38,29 @@ function App() {
             element={
               <>
                 <Banner />
-          
+
                 <main
                   style={{
                     padding: "2rem",
                     marginTop: "1rem",
                   }}
                 >
-          <Products 
-            products={filteredProducts} 
-            cart={cart} 
-            setCart={setCart}
+                  <Products
+                    products={filteredProducts}
+                    cart={cart}
+                    setCart={setCart}
+                  />
+                </main>
+              </>
+            }
           />
-        </main>
-      </>
-    }
-  />
 
-  <Route
-    path="/products/:id"
-    element={
-      <ProductPage
-        products={products}
-        cart={cart}
-        setCart={setCart}
-      />
-    }
-  />
-
+          <Route
+            path="/products/:id"
+            element={
+              <ProductPage products={products} cart={cart} setCart={setCart} />
+            }
+          />
         </Routes>
       </div>
     </Router>
