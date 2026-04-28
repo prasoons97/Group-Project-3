@@ -1,6 +1,6 @@
 import CartBtn from "./components/CartBtn";
 import Banner from "./components/Banner";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
@@ -12,6 +12,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const productsRef = useRef(null);
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -37,13 +38,20 @@ function App() {
             path="/"
             element={
               <>
-                <Banner />
+                <Banner
+                  onShopNow={() => {
+                    setFilteredProducts(products);
+                    if (productsRef.current) {
+                      productsRef.current.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                />
 
                 <main
-                  style={{
-                    padding: "2rem",
-                    marginTop: "1rem",
-                  }}
+                  ref={productsRef}
+                  style={{ padding: "2rem", marginTop: "1rem" }}
                 >
                   <Products
                     products={filteredProducts}
@@ -59,12 +67,12 @@ function App() {
           <Route
             path="/products/:id"
             element={
-              <ProductPage 
-              products={products} 
-              onAddToCart={(product) => {
-                setCart([...cart, product]);
-              }}
-          />
+              <ProductPage
+                products={products}
+                onAddToCart={(product) => {
+                  setCart([...cart, product]);
+                }}
+              />
             }
           />
         </Routes>
