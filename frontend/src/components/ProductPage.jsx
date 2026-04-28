@@ -1,17 +1,22 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+
 function ProductPage({ products = [], onAddToCart}) {
   const { id } = useParams();
+
   const product = products.find(
     (product) => product.firestoreId === id
   );
 
     if (!product) return <p>No product selected</p>
 
-    const images = product.images ? product.images : [product.image, product.image, product.image];
+    const images = product.images 
+    ? product.images 
+    : [product.image, product.image, product.image];
 
     const [selectedImage, setSelectedImage] = useState(images[0]);
 
+    
     return (
         <section className="product-page">
             <div className="product-page-left">
@@ -47,5 +52,6 @@ function ProductPage({ products = [], onAddToCart}) {
             </div>
         </section>
     )
+}
 
 export default ProductPage;

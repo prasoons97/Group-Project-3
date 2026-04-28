@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
-import ShoppingCart from "./components/ShoppingCart";
-import "/.App.css;"
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -58,7 +57,12 @@ function App() {
           <Route
             path="/products/:id"
             element={
-              <ProductPage products={products} cart={cart} setCart={setCart} />
+              <ProductPage 
+              products={products} 
+              onAddToCart={(product) => {
+                setCart([...cart, product]);
+              }}
+          />
             }
           />
         </Routes>
