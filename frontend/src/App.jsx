@@ -1,9 +1,11 @@
+
 import Banner from "./components/Banner";
 import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
 import ShoppingCart from "./components/ShoppingCart";
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -27,7 +29,6 @@ function App() {
           products={products}
           setFilteredProducts={setFilteredProducts}
           cartCount={cart.length}
-          onCartClick={() => console.log("Go to cart")}
         />
 
         <Routes>
@@ -36,13 +37,7 @@ function App() {
             element={
               <>
                 <Banner />
-
-                <main
-                  style={{
-                    padding: "2rem",
-                    marginTop: "1rem",
-                  }}
-                >
+                <main style={{ padding: "2rem", marginTop: "1rem" }}>
                   <Products
                     products={filteredProducts}
                     cart={cart}
@@ -56,11 +51,16 @@ function App() {
           <Route
             path="/products/:id"
             element={
-              <ProductPage products={products} cart={cart} setCart={setCart} />
+              <ProductPage
+                products={products}
+                onAddToCart={(product) => {
+                  setCart([...cart, product]);
+                }}
+              />
             }
           />
 
-         <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/cart" element={<ShoppingCart />} />
         </Routes>
       </div>
     </Router>
