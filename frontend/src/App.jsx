@@ -16,7 +16,7 @@ function App() {
 
   function addToLocalStorage(product) {
     const localStorageCart = localStorage.getItem("cart");
-    const savedCart = JSON.parse(localStorageCart);
+    const savedCart = JSON.parse(localStorageCart) || [];
     const updatedCart = [...savedCart, product];
 
     localStorage.setItem("cart", JSON.stringify(updatedCart))

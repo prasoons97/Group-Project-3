@@ -28,8 +28,8 @@ function ShoppingCart() {
         </div>
         ) : (
         <div className="cart-items-list">
-          {cartItems.map((item) => (
-            <div className="cart-item-row" key={item.firestoreId}>
+          {cartItems.map((item, index) => (
+            <div className="cart-item-row" key={index}>
               <ProductCard product={item} />
             </div>
           ))}
