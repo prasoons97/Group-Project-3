@@ -1,5 +1,6 @@
 import Search from "./Search";
 import HamburgerMenu from "./HamburgerMenu";
+import CartBtn from "./CartBtn";
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar({ products, setFilteredProducts, cartCount }) {
@@ -14,6 +15,7 @@ function Navbar({ products, setFilteredProducts, cartCount }) {
       );
       setFilteredProducts(filtered);
     }
+    navigate("/");
   };
 
   return (
@@ -43,12 +45,8 @@ function Navbar({ products, setFilteredProducts, cartCount }) {
           />
         </div>
           {" "}
-
-          <Link to="/cart" 
-            className={`cart-wrapper ${cartCount > 0 ? "cart-active" : ""}`}>
-              🛒 <span>{cartCount}</span>
-          </Link>
-      </div>
+          <CartBtn onClick={() => navigate("/cart")} count={cartCount} />
+        </div>
     </nav>
   );
 }
