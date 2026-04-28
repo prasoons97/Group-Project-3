@@ -1,5 +1,11 @@
+import { useParams } from "react-router-dom";
 import { useState } from "react";
-function ProductPage({ product, onAddToCart }) {
+function ProductPage({ products = [], onAddToCart}) {
+  const { id } = useParams();
+  const product = products.find(
+    (product) => product.firestoreId === id
+  );
+
     if (!product) return <p>No product selected</p>
 
     const images = product.images ? product.images : [product.image, product.image, product.image];
@@ -32,7 +38,6 @@ function ProductPage({ product, onAddToCart }) {
                 <h1>{product.name}</h1>
 
                 <p>{product.description}</p>
-                <p>This product is made for everyday use and has a comfortable fit. It is easy to match with various outfits and works well for different occasions.</p>
 
                 <p>{product.price} kr</p>
 
@@ -42,6 +47,5 @@ function ProductPage({ product, onAddToCart }) {
             </div>
         </section>
     )
-}
 
 export default ProductPage;

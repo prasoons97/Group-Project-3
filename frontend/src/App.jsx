@@ -1,10 +1,12 @@
-import CartBtn from './components/CartBtn';
-import Banner from './components/Banner';
+import CartBtn from "./components/CartBtn";
+import Banner from "./components/Banner";
 import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
-import "./App.css";
+import ShoppingCart from "./components/ShoppingCart";
+import "/.App.css;"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -21,26 +23,47 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <Navbar
-        products={products}
-        setFilteredProducts={setFilteredProducts}
-        cartCount={cart.length}
-        onCartClick={() => console.log("Go to cart")}
-      />
+    <Router>
+      <div>
+        <Navbar
+          products={products}
+          setFilteredProducts={setFilteredProducts}
+          cartCount={cart.length}
+          onCartClick={() => console.log("Go to cart")}
+        />
 
-      <Banner></Banner>
-      <Products />
-      <main
-        style={{
-          padding: "2rem",
-          marginTop: "1rem",
-        }}
-      >
-        <Products products={filteredProducts} cart={cart} setCart={setCart} />
-        <ProductPage product={filteredProducts[0]} />
-      </main>
-    </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Banner />
+
+                <main
+                  style={{
+                    padding: "2rem",
+                    marginTop: "1rem",
+                  }}
+                >
+                  <Products
+                    products={filteredProducts}
+                    cart={cart}
+                    setCart={setCart}
+                  />
+                </main>
+              </>
+            }
+          />
+
+          <Route
+            path="/products/:id"
+            element={
+              <ProductPage products={products} cart={cart} setCart={setCart} />
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
