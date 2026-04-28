@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
+import CheckoutBtn from "./components/CheckoutBtn";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -53,6 +53,22 @@ function App() {
               </>
             }
           />
+          <CheckoutBtn onClick={() => console.log("Checkout clicked")} />
+        </main>
+      </>
+    }
+  />
+
+  <Route
+    path="/products/:id"
+    element={
+      <ProductPage
+        products={products}
+        cart={cart}
+        setCart={setCart}
+      />
+    }
+  />
 
           <Route
             path="/products/:id"
