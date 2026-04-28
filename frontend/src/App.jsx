@@ -1,5 +1,5 @@
-import CartBtn from './components/CartBtn';
-import Banner from './components/Banner';
+import CartBtn from "./components/CartBtn";
+import Banner from "./components/Banner";
 import { useEffect, useState } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
@@ -37,17 +37,21 @@ function App() {
             element={
               <>
                 <Banner />
-          
+
                 <main
                   style={{
                     padding: "2rem",
                     marginTop: "1rem",
                   }}
                 >
-          <Products 
-            products={filteredProducts} 
-            cart={cart} 
-            setCart={setCart}
+                  <Products
+                    products={filteredProducts}
+                    cart={cart}
+                    setCart={setCart}
+                  />
+                </main>
+              </>
+            }
           />
           <CheckoutBtn onClick={() => console.log("Checkout clicked")} />
         </main>
@@ -66,6 +70,17 @@ function App() {
     }
   />
 
+          <Route
+            path="/products/:id"
+            element={
+              <ProductPage 
+              products={products} 
+              onAddToCart={(product) => {
+                setCart([...cart, product]);
+              }}
+          />
+            }
+          />
         </Routes>
       </div>
     </Router>
