@@ -1,8 +1,11 @@
 import Search from "./Search";
-import CartBtn from "./CartBtn";
 import HamburgerMenu from "./HamburgerMenu";
-function Navbar({ products, setFilteredProducts, onCartClick, cartCount }) {
+import { Link, useNavigate } from "react-router-dom";
+
+function Navbar({ products, setFilteredProducts, cartCount }) {
+  const navigate = useNavigate();
   const handleFilter = (category) => {
+    navigate("/")
     if (category === "ALLA") {
       setFilteredProducts(products);
     } else {
@@ -39,11 +42,12 @@ function Navbar({ products, setFilteredProducts, onCartClick, cartCount }) {
             setFilteredProducts={setFilteredProducts}
           />
         </div>
-        <div className={`cart-wrapper ${cartCount > 0 ? "cart-active" : ""}`}>
           {" "}
 
-          <CartBtn onClick={onCartClick} count={cartCount} />
-        </div>
+          <Link to="/cart" 
+            className={`cart-wrapper ${cartCount > 0 ? "cart-active" : ""}`}>
+              🛒 <span>{cartCount}</span>
+          </Link>
       </div>
     </nav>
   );
