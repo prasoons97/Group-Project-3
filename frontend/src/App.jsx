@@ -1,6 +1,6 @@
 import CartBtn from "./components/CartBtn";
 import Banner from "./components/Banner";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
@@ -13,6 +13,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const productsRef = useRef(null);
 
   function addToLocalStorage(product) {
     const localStorageCart = localStorage.getItem("cart");
@@ -45,13 +46,20 @@ function App() {
             path="/"
             element={
               <>
-                <Banner />
+                <Banner
+                  onShopNow={() => {
+                    setFilteredProducts(products);
+                    if (productsRef.current) {
+                      productsRef.current.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                />
 
                 <main
-                  style={{
-                    padding: "2rem",
-                    marginTop: "1rem",
-                  }}
+                  ref={productsRef}
+                  style={{ padding: "2rem", marginTop: "1rem" }}
                 >
                   <Products
                     products={filteredProducts}
@@ -70,7 +78,7 @@ function App() {
               <ProductPage
                 products={products}
                 onAddToCart={(product) => {
-                  setCart([...cart, product]);
+                setCart((prev) => [...prev, product]); // always uses latest state
                   addToLocalStorage(product);
                 }}
               />
