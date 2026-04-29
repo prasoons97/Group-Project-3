@@ -70,7 +70,7 @@ function App() {
               <ProductPage
                 products={products}
                 onAddToCart={(product) => {
-                  setCart([...cart, product]);
+                setCart((prev) => [...prev, product]); // always uses latest state
                 }}
               />
             }

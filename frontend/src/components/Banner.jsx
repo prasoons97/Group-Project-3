@@ -40,7 +40,7 @@ function Banner({ onShopNow }) {
     }}
     onClick={() => {
         console.log("Shop now clicked");
-        onShopNow();
+        onShopNow?.();  //Won't crash if prop is missing
     }}
 >
     Shop now
