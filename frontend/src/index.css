@@ -244,17 +244,20 @@ body {
 }
 
 .checkout-btn {
-  background: #f0ba7e;
-  color: #fff;
-  padding: 15px 30px;
+  background-color: #d9943f;
+  color: white;
   border: none;
-  border-radius: 23px;
+  padding: 14px 40px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  font-family: "Inter", sans-serif;
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 100%;
-  letter-spacing: 0%;
+  transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background-color: #c78335;
+  transform: scale(1.05);
 }
 
 .progress-bar {
