@@ -16,22 +16,23 @@ function ShoppingCart() {
      return savedCart ? JSON.parse(savedCart) : [];
   });
 
-function handleChangeQty(id, newQty) {
+function handleChangeQty(firestoreId, newQty) {
   const updatedCart =
     newQty === 0
-      ? cartItems.filter((item) => item.id !== id)
+      ? cartItems.filter((item) => item.firestoreId !== firestoreId)
       : cartItems.map((item) =>
-          item.id === id ? { ...item, quantity: newQty } : item
+          item.firestoreId === firestoreId ? { ...item, quantity: newQty } : item
         );
 
   setCartItems(updatedCart);
   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  window.dispatchEvent(new Event("cartUpdated"));
 }
   const handleCheckout = () => {
     const order = {
       customer: "Tia Ria Sina", // replace with real user later
       items: cartItems.map((item) => ({
-        id: item.id,
+        id: item.firestoreId,
         name: item.name,
         qty: item.quantity || 1,
       })),
@@ -71,12 +72,12 @@ function handleChangeQty(id, newQty) {
         ) : (
         <div className="cart-items-list">
           {cartItems.map((item, index) => (
-            <div className="cart-item-row" key={item.id || index}>
+            <div className="cart-item-row" key={item.firestoreId}>
               <ProductCard product={item} />
 
               <CartAmountBtn
               qty={item.quantity || 1}
-              onChangeQty={(newQty) => handleChangeQty(item.id, newQty)}
+              onChangeQty={(newQty) => handleChangeQty(item.firestoreId, newQty)}
               />
             </div>
           ))}
