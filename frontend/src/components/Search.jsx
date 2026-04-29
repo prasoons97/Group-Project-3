@@ -15,12 +15,17 @@ function Search({ products, setFilteredProducts }) {
     };
 
     return (
+        <div className='srcComponent'>
+       
         <input
             type="text"
+            className='srcBar'
             placeholder="Search products..."
             value={search}
             onChange={handleSearch}
         />
+        <span className="searchIcon">🔍︎</span>
+        </div>
     );
 }
 

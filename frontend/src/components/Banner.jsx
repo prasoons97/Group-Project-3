@@ -26,17 +26,14 @@ function Banner({ onShopNow }) {
                 alt="banner"
                 style={{ width: "100%", display: "block" }}
             />
-            <Btn
+            <Btn btnClassName = "shopNowBtn"
     style={{
         position: "absolute",
-        top: "250px",
+        top: "200px",
         right: "120px",
-        padding: "15px 20px",
-        backgroundColor: "black",
-        color: "white",
-        border: "none",
-        borderRadius: 5,
-        cursor: "pointer"
+        padding: "16px 22px",
+        fontSize: "18px"
+    
     }}
     onClick={() => {
         console.log("Shop now clicked");
