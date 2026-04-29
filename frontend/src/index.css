@@ -195,6 +195,54 @@ body {
   color: #fff;
 }
 
+/* CART */
+.shopping-cart-page {
+  padding: 2rem;
+  min-height: 70vh;
+}
+
+.cart-items-list {
+  max-width: 750px;
+  margin: 0;
+}
+
+.cart-item-row {
+  border-bottom: 2px solid #cfcfcf;
+  padding: 2rem 0;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cart-item-row .product-card {
+  max-width: 220px; /* samma som grid på startsidan */
+}
+
+/* När Cart är tom*/
+.cart-empty-state {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.cart-empty-state p {
+  margin: 0.3rem 0;
+}
+
+.shop-now-btn {
+  margin-top: 1.5rem;
+  background: #474645;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .checkout-btn {
   background: #f0ba7e;
   color: #fff;

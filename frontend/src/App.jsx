@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import ProductPage from "./components/ProductPage";
+import ShoppingCart from "./components/ShoppingCart";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CheckoutBtn from "./components/CheckoutBtn";
@@ -13,6 +14,14 @@ function App() {
   const [cart, setCart] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const productsRef = useRef(null);
+
+  function addToLocalStorage(product) {
+    const localStorageCart = localStorage.getItem("cart");
+    const savedCart = JSON.parse(localStorageCart) || [];
+    const updatedCart = [...savedCart, product];
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart))
+  }
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -30,7 +39,6 @@ function App() {
           products={products}
           setFilteredProducts={setFilteredProducts}
           cartCount={cart.length}
-          onCartClick={() => console.log("Go to cart")}
         />
 
         <Routes>
@@ -63,7 +71,7 @@ function App() {
               </>
             }
           />
-
+          <Route path="/cart" element={<ShoppingCart />} />
           <Route
             path="/products/:id"
             element={
@@ -71,6 +79,7 @@ function App() {
                 products={products}
                 onAddToCart={(product) => {
                 setCart((prev) => [...prev, product]); // always uses latest state
+                  addToLocalStorage(product);
                 }}
               />
             }
