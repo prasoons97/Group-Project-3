@@ -303,10 +303,22 @@ border-radius: 5px;
   cursor: pointer;
 }
 
+
 .shopNowBtn:hover{
 background-color: #28272b;
 }
 
+.shop-now-btn{
+   margin-top: 1.5rem;
+  background: #383837;
+  border-radius: 10px;
+  padding: 18px;
+  color: white;
+  border: none;
+  font-family: "Montserrat Alternates", sans-serif;
+
+  cursor: pointer;
+}
 .checkout-btn {
   background-color: #d9943f;
   color: white;
