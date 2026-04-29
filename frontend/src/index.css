@@ -1,14 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat+Alternates:wght@400;700&display=swap');
+
 :root {
   --text: #6f6f70;
   --text-h: #08060d;
   --bg: #ffffff;
+  --accent:#F0BA7E;
   --border: #e5e4e7;
 
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
+ font-family: 'Inter', sans-serif;
 
-  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
   color: var(--text);
   background: var(--bg);
 }
@@ -119,6 +119,42 @@ body {
   line-height: 100%;
   letter-spacing: 0%;
   white-space: nowrap;
+}
+.srcComponent {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin-right: 150px;
+}
+.srcBar {
+  background-color: #ebe7ee;
+  border: none;
+  padding: 10px 40px 10px 12px;
+  border-radius: 16px;
+  width: 200px;
+}
+.searchIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: gray;
+  margin-right: 150px;
+  pointer-events: none;
+}
+
+.cartBtn {
+border: none;
+  position: relative;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.cartBtn:hover {
+background-color: #f2f1f5;
+border-radius: 5px;
 }
 
 .navbar-left {
@@ -232,15 +268,20 @@ body {
   margin: 0.3rem 0;
 }
 
-.shop-now-btn {
+.shopNowBtn {
   margin-top: 1.5rem;
-  background: #474645;
+  background: #383837;
+  border-radius: 10px;
+  padding: 25px;
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 0.9rem 1.8rem;
-  font-weight: bold;
+  font-family: "Montserrat Alternates", sans-serif;
+
   cursor: pointer;
+}
+
+.shopNowBtn:hover{
+background-color: #28272b;
 }
 
 .checkout-btn {
