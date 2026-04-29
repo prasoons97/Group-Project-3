@@ -188,14 +188,13 @@
 
 .add-to-cart-btn {
   background-color: #d9943f;
+  width: 100%;
   color: white;
   border: none;
-  padding: 14px 40px;
+  padding: 16px;
   border-radius: 20px;
   font-size: 16px;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .add-to-cart-btn:hover {
@@ -203,8 +202,28 @@
   transform: scale(1.05);
 }
 
-.product-page-right {
+.product-page {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+.product-page-left {
+  width: 60%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 20px;
+}
+
+.product-page-scroll-image {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.product-page-right {
+  width: 35%;
+  position: sticky;
+  top: 120px;
 }
