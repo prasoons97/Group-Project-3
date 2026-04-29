@@ -256,3 +256,24 @@ body {
   line-height: 100%;
   letter-spacing: 0%;
 }
+
+.progress-bar {
+  width: 200px;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #474645;
+  border-radius: 10px;
+  animation: fill 2s ease forwards;
+}
+
+@keyframes fill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
