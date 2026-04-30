@@ -16,12 +16,24 @@ function App() {
   const productsRef = useRef(null);
 
   function addToLocalStorage(product) {
-    const localStorageCart = localStorage.getItem("cart");
-    const savedCart = JSON.parse(localStorageCart) || [];
-    const updatedCart = [...savedCart, product];
+  const localStorageCart = localStorage.getItem("cart");
+  const savedCart = JSON.parse(localStorageCart) || [];
+
+  const existingItem = savedCart.find(
+    (item) => item.firestoreId === product.firestoreId
+  );
+
+  const updatedCart = existingItem
+    ? savedCart.map((item) =>
+        item.firestoreId === product.firestoreId
+          ? { ...item, quantity: (item.quantity || 1) + 1 }
+          : item
+      )
+    : [...savedCart, { ...product, quantity: 1 }];
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-  }
+    setCart(updatedCart);
+  };
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -32,13 +44,28 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    const updateCart = () => {
+      const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(savedCart);
+    };
+
+  updateCart();
+
+  window.addEventListener("cartUpdated", updateCart);
+
+  return () => {
+    window.removeEventListener("cartUpdated", updateCart);
+  };
+}, []);
+
   return (
     <Router>
       <div>
         <Navbar
           products={products}
           setFilteredProducts={setFilteredProducts}
-          cartCount={cart.length}
+          cartCount={cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
         />
 
         <Routes>
@@ -78,7 +105,6 @@ function App() {
               <ProductPage
                 products={products}
                 onAddToCart={(product) => {
-                setCart((prev) => [...prev, product]); // always uses latest state
                   addToLocalStorage(product);
                 }}
               />
