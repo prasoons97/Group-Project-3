@@ -2,9 +2,11 @@ import Search from "./Search";
 import HamburgerMenu from "./HamburgerMenu";
 import CartBtn from "./CartBtn";
 import { Link, useNavigate } from "react-router-dom";
+import { countCartItems } from "../utils/cartUtils";
 
-function Navbar({ products, setFilteredProducts, cartCount }) {
-  const navigate = useNavigate();
+function Navbar({ products, setFilteredProducts, cart }) {
+  const cartCount = countCartItems(cart);
+  const navigate = useNavigate(); 
   const handleFilter = (category) => {
     navigate("/")
     if (category === "ALLA") {
