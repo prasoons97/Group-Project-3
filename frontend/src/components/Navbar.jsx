@@ -6,9 +6,10 @@ import { countCartItems } from "../utils/cartUtils";
 
 function Navbar({ products, setFilteredProducts, cart }) {
   const cartCount = countCartItems(cart);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+
   const handleFilter = (category) => {
-    navigate("/")
+    navigate("/");
     if (category === "ALLA") {
       setFilteredProducts(products);
     } else {
@@ -23,7 +24,12 @@ function Navbar({ products, setFilteredProducts, cart }) {
   return (
     <nav className="navbar">
       <div className="navbar-left mobile-only">
-        <HamburgerMenu onFilter={handleFilter} />
+        {/* Pass products and setFilteredProducts to HamburgerMenu for mobile search */}
+        <HamburgerMenu
+          onFilter={handleFilter}
+          products={products}
+          setFilteredProducts={setFilteredProducts}
+        />
       </div>
       <div className="navbar-left desktop-only">
         {["ALLA", "DAM", "HERR", "BARN"].map((cat) => (
@@ -46,9 +52,8 @@ function Navbar({ products, setFilteredProducts, cart }) {
             setFilteredProducts={setFilteredProducts}
           />
         </div>
-          {" "}
-          <CartBtn onClick={() => navigate("/cart")} count={cartCount} />
-        </div>
+        <CartBtn onClick={() => navigate("/cart")} count={cartCount} />
+      </div>
     </nav>
   );
 }
