@@ -18,6 +18,22 @@ router.get("/products", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch products" });
   }
+  
+});
+
+router.get("/api/orders", async (req, res) => { // For the order history!
+  try {
+    const snapshot = await getDocs(collection(db, "orders"))
+    const orders = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+      createdAt: doc.data().createdAt?.toDate().toISOString()
+    }))
+    res.status(200).json(orders)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: "Failed to fetch orders" })
+  }
 });
 
 router.post("/api/orders", async (req, res) => {

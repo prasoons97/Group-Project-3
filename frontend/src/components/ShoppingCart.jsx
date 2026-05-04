@@ -18,6 +18,7 @@ function ShoppingCart({ handleChangeQty, cartItems }) {
       customer: "Tia Ria Sina", // replace with real user later
       items: cartItems.map((item) => ({
         id: item.firestoreId,
+        image: item.image,
         name: item.name,
         qty: item.quantity || 1,
       })),
@@ -45,6 +46,9 @@ function ShoppingCart({ handleChangeQty, cartItems }) {
   return (
     <section className="shopping-cart-page">
       <h1>Your Cart</h1>
+      <Btn btnClassName="order-history-btn"
+            spanText="Order history"
+            onClick={() => navigate("/orders")}></Btn>
 
       {cartItems.length === 0 ? (
         <div className="cart-empty-state">
