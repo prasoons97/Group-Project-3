@@ -7,6 +7,7 @@ import ShoppingCart from "./components/ShoppingCart";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import OrderConfirmation from "./components/OrderConfirmation";
+import OrderHistory from "./components/OrderHistory";
 import {
   getLocalStorageCart,
   saveLocalStorageCart,
@@ -100,6 +101,8 @@ function App() {
               <ProductPage products={products} onAddToCart={handleAddToCart} />
             }
           />
+
+          <Route path="/orders" element={<OrderHistory />} />
         </Routes>
       </div>
     </Router>

@@ -378,3 +378,26 @@ a:visited {
 a:hover {
   color: inherit;
 }
+
+
+.HistoryPage {
+display: block
+}
+
+.order-history-btn {
+  margin-top: 1.5rem;
+  background: #383837;
+  border-radius: 10px;
+  padding: 8px;
+  color: white;
+  border: none;
+  font-family: "Montserrat Alternates", sans-serif;
+  cursor: pointer;
+}
+.order-history-btn:hover {
+  background: #5e5e5c;
+}
+
+.HistoryTitle {
+  textAlign: "center"
+}
