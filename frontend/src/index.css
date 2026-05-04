@@ -105,6 +105,9 @@ a .product-card_price {
   .desktop-only {
     display: none;
   }
+   .shopNowBtn {
+    display: none;
+  }
 
   /* Switch from 4 columns to 2 columns on mobile */
   .products-grid {
