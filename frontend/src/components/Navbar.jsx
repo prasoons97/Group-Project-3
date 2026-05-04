@@ -7,8 +7,8 @@ import { countCartItems } from "../utils/cartUtils";
 function Navbar({ products, setFilteredProducts, cart }) {
   const cartCount = countCartItems(cart);
   const navigate = useNavigate(); 
+
   const handleFilter = (category) => {
-    navigate("/")
     if (category === "ALLA") {
       setFilteredProducts(products);
     } else {
@@ -20,11 +20,21 @@ function Navbar({ products, setFilteredProducts, cart }) {
     navigate("/");
   };
 
+  // resets all filters and goes to home — used by logo click
+    const handleLogoClick = () => {
+      console.log("Logo clicked — resetting filters"); 
+    setFilteredProducts(products);
+    navigate("/");
+  };
+
   return (
     <nav className="navbar">
+      {/* mobile — hamburger */}
       <div className="navbar-left mobile-only">
         <HamburgerMenu onFilter={handleFilter} />
       </div>
+
+      {/* desktop — category links */}
       <div className="navbar-left desktop-only">
         {["ALLA", "DAM", "HERR", "BARN"].map((cat) => (
           <span
@@ -37,8 +47,12 @@ function Navbar({ products, setFilteredProducts, cart }) {
         ))}
       </div>
 
-      <div className="navbar-logo">W O R N</div>
+      {/* logo — always navigates to home and resets filters */}
+      <div className="navbar-logo" onClick={handleLogoClick} style={{ cursor: "pointer" }}>
+        W O R N
+      </div>
 
+        {/* right side — search and cart */}
       <div className="navbar-right">
         <div className="search-wrapper">
           <Search
