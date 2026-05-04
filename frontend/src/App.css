@@ -227,3 +227,12 @@
   position: sticky;
   top: 120px;
 }
+
+.sort-products {
+  margin-bottom: 20px;
+}
+
+.sort-products select {
+  padding: 8px;
+  border-radius: 6px;
+}
