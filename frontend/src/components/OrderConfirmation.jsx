@@ -31,10 +31,10 @@ function OrderConfirmation() {
             <p>Your order has been placed!</p>
             <p>Order ID: {orderId}</p>
             <Btn
-              btnClassName="shop-now-btn"
-              spanText="SHOP NOW"
-              onClick={() => navigate("/")}
-            />
+              btnClassName="shopNowBtn"
+              onClick={() => navigate("/")}>
+              Shop now
+            </Btn>
           </>
         )}
       </div>

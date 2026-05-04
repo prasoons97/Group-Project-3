@@ -7,6 +7,8 @@ import ProductCard from "./ProductCard";
 import CheckoutBtn from "./CheckoutBtn";
 import { useCreateOrderMutation } from "./../api/ShoppingApi";
 
+// cartItems innehåller hela kundvagnen (array av produkter)
+// handleChangeQty skickas ner för att kunna uppdatera eller ta bort produkter
 function ShoppingCart({ handleChangeQty, cartItems }) {
   const navigate = useNavigate();
   const createOrder = useCreateOrderMutation();
@@ -50,10 +52,10 @@ function ShoppingCart({ handleChangeQty, cartItems }) {
           <p>Items you add to your cart will be shown here.</p>
 
           <Btn
-            btnClassName="shop-now-btn"
-            spanText="SHOP NOW"
-            onClick={() => navigate("/")}
-          />
+            btnClassName="shopNowBtn"
+            onClick={() => navigate("/")}>
+              Shop Now
+          </Btn>
         </div>
       ) : (
         <div className="cart-items-list">
