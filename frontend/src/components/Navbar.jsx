@@ -6,16 +6,9 @@ import { countCartItems } from "../utils/cartUtils";
 
 function Navbar({ products, setFilteredProducts, cart }) {
   const cartCount = countCartItems(cart);
-<<<<<<< 78-mobile-responsive
-  const navigate = useNavigate();
-
-  const handleFilter = (category) => {
-    navigate("/");
-=======
   const navigate = useNavigate(); 
 
   const handleFilter = (category) => {
->>>>>>> main
     if (category === "ALLA") {
       setFilteredProducts(products);
     } else {
