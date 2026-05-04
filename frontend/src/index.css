@@ -397,6 +397,19 @@ border-radius: 5px;
   background-color: #28272b;
 }
 
+.shopNowOrderConfirmationBtn {
+  margin-top: 1.5rem;
+  transform: translateY(-20%);
+  background: #383837;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 18px 28px;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 .banner-dots {
   position: absolute;
   bottom: 16px;
@@ -422,18 +435,6 @@ border-radius: 5px;
   background-color: white;
 }
 
-
-.shop-now-btn{
-   margin-top: 1.5rem;
-  background: #383837;
-  border-radius: 10px;
-  padding: 18px;
-  color: white;
-  border: none;
-  font-family: "Montserrat Alternates", sans-serif;
-
-  cursor: pointer;
-}
 .checkout-btn {
   background-color: #d9943f;
   color: white;

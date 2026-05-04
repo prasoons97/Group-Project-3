@@ -56,7 +56,7 @@ function ShoppingCart({ handleChangeQty, cartItems }) {
           <p>Items you add to your cart will be shown here.</p>
 
           <Btn
-            btnClassName="shopNowBtn"
+            btnClassName="shopNowOrderConfirmationBtn"
             onClick={() => navigate("/")}>
               Shop Now
           </Btn>

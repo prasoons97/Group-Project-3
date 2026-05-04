@@ -20,6 +20,7 @@ function App() {
   const savedCart = getLocalStorageCart();
   const [cart, setCart] = useState(savedCart);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [activeFilter, setActiveFilter] = useState("ALLA"); // track active filter
   const productsRef = useRef(null);
 
   // Lägger till en produkt i cart genom att uppdatera state och spara i localStorage
@@ -60,6 +61,7 @@ function App() {
           products={products}
           setFilteredProducts={setFilteredProducts}
           cart={cart}
+          setActiveFilter={setActiveFilter}
         />
 
         <Routes>
@@ -67,6 +69,7 @@ function App() {
             path="/"
             element={
               <>
+              {activeFilter === "ALLA" && (
                 <Banner
                   onShopNow={() => {
                     setFilteredProducts(products);
@@ -77,7 +80,7 @@ function App() {
                     }
                   }}
                 />
-
+              )}
                 <main
                   ref={productsRef}
                   style={{ padding: "2rem", marginTop: "1rem" }}
