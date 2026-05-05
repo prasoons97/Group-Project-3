@@ -1,18 +1,16 @@
 export default function PriceTotalCheckout({ cart }) {
 
-  // Skapar en variabel som räknar ut totalpriset
-  // reduce går igenom varje produkt (item) i cart
-  // sum börjar på 0 och vi adderar varje produkts pris
+  // Calculate total price, multiply each item's price by quantity and sum up
   const totalPrice = cart.reduce((sum, item) => {
     return sum + item.price * (item.quantity || 1);
-    // item.price = pris för produkten
-    // item.quantity = hur många av produkten (t.ex. 2 jeans)
-    // || 1 = fallback om quantity inte finns (räknar som 1)
+    // item.price = price for product
+    // item.quantity = how many of the product 
+    // || 1 = fallback if quantity is not defined (counts as 1)
   }, 0);
 
   return (
     <div>
-      {/* Visar det uträknade totalpriset */}
+      {/* Shows the calculated total price */}
       <h3>Total: {totalPrice} kr</h3>
     </div>
   );

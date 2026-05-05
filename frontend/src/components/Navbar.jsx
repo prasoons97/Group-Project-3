@@ -31,7 +31,12 @@ function Navbar({ products, setFilteredProducts, cart }) {
     <nav className="navbar">
       {/* mobile — hamburger */}
       <div className="navbar-left mobile-only">
-        <HamburgerMenu onFilter={handleFilter} />
+        {/* Pass products and setFilteredProducts to HamburgerMenu for mobile search */}
+        <HamburgerMenu
+          onFilter={handleFilter}
+          products={products}
+          setFilteredProducts={setFilteredProducts}
+        />
       </div>
 
       {/* desktop — category links */}
@@ -60,9 +65,8 @@ function Navbar({ products, setFilteredProducts, cart }) {
             setFilteredProducts={setFilteredProducts}
           />
         </div>
-          {" "}
-          <CartBtn onClick={() => navigate("/cart")} count={cartCount} />
-        </div>
+        <CartBtn onClick={() => navigate("/cart")} count={cartCount} />
+      </div>
     </nav>
   );
 }

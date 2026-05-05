@@ -1,9 +1,11 @@
 import dotenv from "dotenv";
+// Load environment variables from .env.local in root
 dotenv.config({ path: "../.env.local" });
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+// Firebase config using environment variables 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
