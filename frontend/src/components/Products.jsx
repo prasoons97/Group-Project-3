@@ -18,7 +18,7 @@ function Products({ products = [] }) {
   //Sorteringslogik
   const sortedProducts = [...products].sort((a, b) => {
     if (sortOption === "price-low")
-      return normalizePrice(a.price) - normalizePrice(b.price); 
+      return normalizePrice(a.price) - normalizePrice(b.price);
     if (sortOption === "price-high")
       return normalizePrice(b.price) - normalizePrice(a.price);
     if (sortOption === "a-z")
@@ -30,26 +30,29 @@ function Products({ products = [] }) {
 
   return (
     <section className="products-page">
-      <div className="sort-products">
-        <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}> 
-          <option value="">Sort by</option>
-          <option value="price-low">Price: Low to High</option>
-          <option value="price-high">Price: High to Low</option>
-          <option value="a-z">Name: A-Z</option>
-          <option value="z-a">Name: Z-A</option>
-        </select>
-      </div>
-      {/* PRODUCTS GRID */}
-      <div className="products-grid"> 
-        {sortedProducts.map((product) => (
-          <Link
-            key={product.firestoreId}// Använder firestoreId som nyckel
-            to={`/products/${product.firestoreId}`}// Länkar till produktens detaljsida
-            className="product-card-link"
-          >
-            <ProductCard product={product} />
-          </Link>
-        ))}
+      <div className="products-content">
+        <div className="sort-products">
+          <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+            <option value="">Sort by</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="a-z">Name: A-Z</option>
+            <option value="z-a">Name: Z-A</option>
+          </select>
+        </div>
+
+        {/* PRODUCTS GRID */}
+        <div className="products-grid">
+          {sortedProducts.map((product) => (
+            <Link
+              key={product.firestoreId}// Använder firestoreId som nyckel
+              to={`/products/${product.firestoreId}`}// Länkar till produktens detaljsida
+              className="product-card-link"
+            >
+              <ProductCard product={product} />
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
