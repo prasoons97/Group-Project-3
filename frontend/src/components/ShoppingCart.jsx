@@ -13,35 +13,48 @@ function ShoppingCart({ handleChangeQty, cartItems }) {
   const navigate = useNavigate();
   const createOrder = useCreateOrderMutation();
 
-  const handleCheckout = () => {
-    const order = {
-      customer: "Tia Ria Sina", // replace with real user later
-      items: cartItems.map((item) => ({
-        id: item.firestoreId,
-        image: item.image,
-        name: item.name,
-        qty: item.quantity || 1,
-      })),
-      price: cartItems.reduce(
-        (sum, item) => sum + item.price * (item.quantity || 1),
-        0,
-      ),
-    };
+const handleCheckout = () => {
+  if (!cartItems.length || createOrder.isPending) return;
 
-    console.log("Order being sent:", order);
+  const user = JSON.parse(localStorage.getItem("user"));
 
-    createOrder.mutate(order, {
-      onSuccess: (data) => {
-        localStorage.removeItem("cart");
-        navigate("/order-confirmation", {
-          state: { orderId: data?.id || data?.orderId },
-        });
-      },
-      onError: (error) => {
-        console.error("Order failed:", error);
-      },
-    });
+  const order = {
+    customer: user?.name || "Guest User",
+    customerId: user?.id || null,
+    items: cartItems.map((item) => ({
+      id: item.firestoreId,
+      image: item.image,
+      name: item.name,
+      qty: item.quantity || 1,
+      price: item.price,
+    })),
+    price: cartItems.reduce(
+      (sum, item) => sum + item.price * (item.quantity || 1),
+      0
+    ),
+    createdAt: new Date().toISOString(),
   };
+
+  createOrder.mutate(order, {
+    onSuccess: (data) => {
+      // Clear actual parent cart state
+      cartItems.forEach((item) => {
+        handleChangeQty(item.firestoreId, 0);
+      });
+
+      localStorage.removeItem("cart");
+      window.dispatchEvent(new Event("cartUpdated"));
+
+      navigate("/order-confirmation", {
+        state: { orderId: data?.id || data?.orderId },
+      });
+    },
+
+    onError: (error) => {
+      console.error("Order failed:", error);
+    },
+  });
+};
 
   return (
     <section className="shopping-cart-page">
