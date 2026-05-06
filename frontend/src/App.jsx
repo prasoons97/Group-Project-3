@@ -7,6 +7,7 @@ import ShoppingCart from "./components/ShoppingCart";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import OrderConfirmation from "./components/OrderConfirmation";
+import OrderHistory from "./components/OrderHistory";
 import {
   getLocalStorageCart,
   saveLocalStorageCart,
@@ -21,7 +22,8 @@ function App() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const productsRef = useRef(null);
 
-  function handleAddToCart(product) {
+  // Lägger till en produkt i cart genom att uppdatera state och spara i localStorage
+  function handleAddToCart(product) { 
     const updatedCart = addToCart(product, cart);
     setCart(updatedCart);
     saveLocalStorageCart(updatedCart);
@@ -36,6 +38,7 @@ function App() {
       });
   }, []);
 
+  // Uppdaterar eller tar bort en produkt i cart beroende på dess quantity
   function handleChangeQty(firestoreId, newQty) {
     const updatedCart =
       newQty === 0
@@ -100,6 +103,8 @@ function App() {
               <ProductPage products={products} onAddToCart={handleAddToCart} />
             }
           />
+
+          <Route path="/orders" element={<OrderHistory />} />
         </Routes>
       </div>
     </Router>

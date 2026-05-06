@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
 
+// Tar emot products som props
 function Products({ products = [] }) {
   const [sortOption, setSortOption] = useState("");// State för att lagra vald sorteringsoption
 
@@ -49,6 +50,7 @@ function Products({ products = [] }) {
               to={`/products/${product.firestoreId}`}// Länkar till produktens detaljsida
               className="product-card-link"
             >
+              {/* Skickar produkten som prop till ProductCard */}
               <ProductCard product={product} />
             </Link>
           ))}

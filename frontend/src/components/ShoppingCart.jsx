@@ -7,6 +7,8 @@ import ProductCard from "./ProductCard";
 import CheckoutBtn from "./CheckoutBtn";
 import { useCreateOrderMutation } from "./../api/ShoppingApi";
 
+// cartItems innehåller hela kundvagnen (array av produkter)
+// handleChangeQty skickas ner för att kunna uppdatera eller ta bort produkter
 function ShoppingCart({ handleChangeQty, cartItems }) {
   const navigate = useNavigate();
   const createOrder = useCreateOrderMutation();
@@ -16,6 +18,7 @@ function ShoppingCart({ handleChangeQty, cartItems }) {
       customer: "Tia Ria Sina", // replace with real user later
       items: cartItems.map((item) => ({
         id: item.firestoreId,
+        image: item.image,
         name: item.name,
         qty: item.quantity || 1,
       })),
@@ -43,6 +46,9 @@ function ShoppingCart({ handleChangeQty, cartItems }) {
   return (
     <section className="shopping-cart-page">
       <h1>Your Cart</h1>
+      <Btn btnClassName="order-history-btn"
+            spanText="Order history"
+            onClick={() => navigate("/orders")}></Btn>
 
       {cartItems.length === 0 ? (
         <div className="cart-empty-state">
@@ -50,10 +56,10 @@ function ShoppingCart({ handleChangeQty, cartItems }) {
           <p>Items you add to your cart will be shown here.</p>
 
           <Btn
-            btnClassName="shop-now-btn"
-            spanText="SHOP NOW"
-            onClick={() => navigate("/")}
-          />
+            btnClassName="shopNowBtn"
+            onClick={() => navigate("/")}>
+              Shop Now
+          </Btn>
         </div>
       ) : (
         <div className="cart-items-list">

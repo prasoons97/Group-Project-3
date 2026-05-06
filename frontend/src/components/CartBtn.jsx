@@ -1,13 +1,13 @@
 import Btn from "./Btn";
 
-// Cart-knapp som återanvänder vår generella Btn-komponent
+// cart-button that shows the number of items in the cart and navigates to the cart page when clicked
 function CartBtn({onClick, count = 0 }) {
     return (
     <Btn
     btnClassName ="cartBtn"
-    // vad som händer när man klickar (t.ex. gå till cart)
+    // what happens when clicked (example: go to cart)
     onClick={onClick} 
-    // visar ikon + antal om det finns produkter i cart
+    // shows icon + count if there are products in the cart
     spanText={count > 0 ? `🛒 (${count})` : `🛒`} 
     />
     );

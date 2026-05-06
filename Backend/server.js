@@ -6,7 +6,9 @@ import routes from "./services.js";
 const app = express();
 const PORT = 3000;
 
+// Enable cross-origin requests from frontend
 app.use(cors());
+// Parse incoming JSON requests
 app.use(express.json());
 
 // connect endpoints
