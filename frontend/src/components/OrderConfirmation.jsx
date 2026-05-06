@@ -31,7 +31,7 @@ function OrderConfirmation() {
             <p>Your order has been placed!</p>
             <p>Order ID: {orderId}</p>
             <Btn
-              btnClassName="shopNowBtn"
+              btnClassName="shopNowOrderConfirmationBtn"
               onClick={() => navigate("/")}>
               Shop now
             </Btn>

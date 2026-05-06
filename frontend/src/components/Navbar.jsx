@@ -4,7 +4,8 @@ import CartBtn from "./CartBtn";
 import { Link, useNavigate } from "react-router-dom";
 import { countCartItems } from "../utils/cartUtils";
 
-function Navbar({ products, setFilteredProducts, cart }) {
+// receive as prop
+function Navbar({ products, setFilteredProducts, cart, setActiveFilter }) {
   const cartCount = countCartItems(cart);
   const navigate = useNavigate(); 
 
@@ -17,13 +18,14 @@ function Navbar({ products, setFilteredProducts, cart }) {
       );
       setFilteredProducts(filtered);
     }
+    setActiveFilter(category);
     navigate("/");
   };
 
   // resets all filters and goes to home — used by logo click
     const handleLogoClick = () => {
-      console.log("Logo clicked — resetting filters"); 
     setFilteredProducts(products);
+    setActiveFilter("ALLA"); 
     navigate("/");
   };
 
