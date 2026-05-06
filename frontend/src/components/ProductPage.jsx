@@ -1,18 +1,18 @@
 import { useParams } from "react-router-dom";
 
 
-function ProductPage({ products = [], onAddToCart }) {
-    const { id } = useParams();
+function ProductPage({ products = [], onAddToCart }) { // Tar emot produkter och onAddToCart-funktion som props
+    const { id } = useParams(); // Hämtar produkt-id från URL:en
 
-    const product = products.find(
-        (product) => product.firestoreId === id
+    const product = products.find( // Hittar produkten som matchar id:t
+        (product) => product.firestoreId === id // Använder firestoreId som identifierare
     );
 
-    if (!product) return <p>No product selected</p>
+    if (!product) return <p>No product selected</p> 
 
-    const images = product.images
-        ? product.images
-        : [product.image, product.image, product.image];
+    const images = product.images// Om produkten har flera bilder, använd dem, annars duplicera den enda bilden för att fylla layouten
+        ? product.images// Om det finns bilder, använd dem
+        : [product.image, product.image, product.image];// Om det inte finns bilder, skapa en array med tre kopior av den enda bilden
 
 
     return (

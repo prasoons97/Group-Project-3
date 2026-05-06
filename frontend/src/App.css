@@ -227,3 +227,27 @@
   position: sticky;
   top: 120px;
 }
+
+.sort-products {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 24px 0 16px;
+  z-index: 5;
+}
+
+.sort-products select {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.products-content {
+  width: min(100%, 1216px);
+  margin: 0 auto;
+}
+
+.products-content .products-grid {
+  justify-content: start;
+}
